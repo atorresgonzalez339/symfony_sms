@@ -1,0 +1,60 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+    Register
+{% endblock %}
+{% block page_content %}
+    <div class="row">
+        <div class="col-lg-4" ng-controller="RegisterController">
+            {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+            <div class="form-group">
+                <label>Nombre</label>
+                {{ form_widget(form.first_name, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors(form.first_name) }}
+            </div>
+            <div class="form-group">
+                <label>Apellidos</label>
+                {{ form_widget(form.last_name, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors(form.last_name) }}
+            </div>
+            <div class="form-group">
+                <label>Correo electr&oacute;nico</label>
+                {{ form_widget(form.email, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors(form.email) }}
+            </div>
+            <div class="form-group">
+                <label>N&uacute;mero de Tel&eacute;fono</label>
+                {{ form_widget(form.phone_number, {'attr':{'id':'phoneNumber', 'class':'form-control', 'international-phone-number':'', 'type':'tel'}}) }}
+                {{ form_errors(form.phone_number) }}
+            </div>
+            <div class="form-group">
+                <label>Contrase&ntilde;a</label>
+                {{ form_widget(form.plainPassword, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors(form.plainPassword) }}
+            </div>
+            <div class="col-lg-6">
+                <button style="width: 100%" class="btn btn-primary">Registrate con Facebook</button>
+            </div>
+            <div class="col-lg-6">
+                <button type="button" style="width: 100%" class="btn btn-success" ng-click="register()">Crear Cuenta</button>
+            </div>
+
+            {# Hidden Fields #}
+            {{ form_widget(form.registration_ip) }}
+            <input type="hidden" id="countryCode" name="country_code" value="">
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $.getJSON('//freegeoip.net/json/?callback=?', function(data) {
+                $('input#form_registration_ip').val(data.ip);
+                console.log(data);
+            });
+        });
+    </script>
+{% endblock %}

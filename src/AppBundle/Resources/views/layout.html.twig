@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block body_class %}{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="{{ path('index') }}">Home</a></li>
+                    <li role="presentation"><a href="{{ path('login') }}">Login</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Llama Latino</h3>
+        </div>
+        {% block page_content %}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {# Put extra js files here #}
+{% endblock %}

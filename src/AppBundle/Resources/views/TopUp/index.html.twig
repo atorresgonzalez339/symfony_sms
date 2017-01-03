@@ -1,0 +1,46 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+    TopUp
+{% endblock %}
+{% block page_content %}
+    <div ng-controller="TopUpController">
+        <div class="col-lg-12">
+            <h1>
+                TopUp Page ...
+            </h1>
+        </div>
+        <div class="col-lg-6">
+            <form id="topUpForm" name="topUpForm" ng-submit="processTopUp()" ng-cloak>
+                <div class="form-group">
+                    <label for="phoneNumber">Introduzca el número de teléfono que quiere recargar</label>
+                    <input id="phoneNumber"
+                           type="tel"
+                           value="+53"
+                           name="phone"
+                           required
+                           ng-model="data.phone"
+                           international-phone-number
+                           class="form-control">
+                </div>
+                <div class="form-group" ng-if="isAValidPhoneNumber()">
+                    <label for="operator">Selecciona un operador</label>
+                    <select id="operator" class="form-control" ng-model="data.operator" ng-disabled="isAValidPhoneNumber() == false">
+                        <option value="" disabled>Selecciona un operador</option>
+                        <option value="cubacel">Cubacel</option>
+                        <option value="cubacel">Nauta</option>
+                    </select>
+                </div>
+                <div class="form-group" ng-if="isAValidOperator()">
+                    <label for="operator">Selecciona el importe de la recarga</label>
+                    <div class="btn-group" style="display: flex">
+                        <label class="btn btn-primary" ng-model="data.quantity" uib-btn-radio="10" ng-disabled="isAValidOperator() == false">10 CUC</label>
+                        <label class="btn btn-primary" ng-model="data.quantity" uib-btn-radio="15" ng-disabled="isAValidOperator() == false">15 CUC</label>
+                        <label class="btn btn-primary" ng-model="data.quantity" uib-btn-radio="20" ng-disabled="isAValidOperator() == false">20 CUC</label>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit" ng-disabled="!isAValidQuantity()">Procesar Recarga</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

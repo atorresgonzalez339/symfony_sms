@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LLama - Latino | {% block title %}{% endblock %}</title>
+
+    {%block css %}
+        <link href="{{ asset('bundles/app/bower_components/bootstrap/dist/css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/app/bower_components/intl-tel-input/build/css/intlTelInput.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/app/css/layout.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/app/css/styles.css') }}" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    {% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}" ng-controller="BaseController">
+<div id="ng-spinner" class="render" ng-cloak ng-if="$root.spinner">Spinner</div>
+{% block body %}
+
+{% endblock %}
+{% block javascripts %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{{ asset('bundles/app/bower_components/intl-tel-input/build/js/intlTelInput.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/app/bower_components/intl-tel-input/lib/libphonenumber/build/utils.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/app/bower_components/angular/angular.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/app/bower_components/angular-animate/angular-animate.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/app/bower_components/angular-touch/angular-touch.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/app/bower_components/angular-route/angular-route.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/app/bower_components/angular-bootstrap/ui-bootstrap.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/app/bower_components/international-phone-number/releases/international-phone-number.js') }}" type="text/javascript"></script>
+    {#Angular App#}
+    <script src="{{ asset('bundles/app/js/AngularApp/Application.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/app/js/AngularApp/Controllers/BaseController.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/app/js/AngularApp/Controllers/RegisterController.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/app/js/AngularApp/Controllers/TopUpController.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('bundles/app/js/AngularApp/Services/BaseService.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/app/js/AngularApp/Services/Utils/UtilPhoneService.js') }}" type="text/javascript"></script>
+    {# End Angular App#}
+{% endblock %}
+</body>
+
+</html>

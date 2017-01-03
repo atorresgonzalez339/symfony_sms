@@ -1,0 +1,24 @@
+logout:
+    path: /logout
+
+Front:
+    resource: "@AppBundle/Controller/FrontController.php"
+    prefix:   /
+    type:     annotation
+
+SecurityController:
+    resource: "@AppBundle/Controller/SecurityController.php"
+    prefix:   /
+    type:     annotation
+
+DashboardController:
+    resource: "@AppBundle/Controller/DashboardController.php"
+    prefix:   /client
+    type:     annotation
+
+TopUpController:
+    resource: "@AppBundle/Controller/TopUpController.php"
+    prefix:   /client
+    type:     annotation
+
+

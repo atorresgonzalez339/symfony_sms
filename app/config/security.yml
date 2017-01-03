@@ -1,0 +1,31 @@
+security:
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: md5
+
+    providers:
+        user_db:
+            entity: { class: AppBundle\Entity\User, property: email }
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        client_area:
+            pattern:    ^/
+            anonymous:  true
+            form_login:
+                login_path: login
+                check_path: login
+                always_use_default_target_path: false
+                default_target_path: /client/dashboard
+            logout:
+                path:   /logout
+                target: /login
+
+    access_control:
+        - { path: ^/login,  roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/client,  roles: ROLE_CLIENT }
+        - { path: ^/,  roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
